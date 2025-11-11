@@ -180,6 +180,62 @@ Autoencoder/
 | 平均SAD (mSAD) | 0.0278 |
 | 平均RMSE (mRMSE) | 0.0568 |
 
+## 可视化结果
+
+训练和评估完成后，`results/`目录下会生成以下可视化图片：
+
+### 1. 端元光谱对比图
+
+展示估计端元（绿色）与真实端元（红色）的光谱曲线对比。
+
+![Endmembers Comparison](results/endmembers_comparison.png)
+
+**文件**: `results/endmembers_comparison.png`
+
+- 4个子图分别对应4种地物：Tree（树木）、Water（水体）、Soil（土壤）、Road（道路）
+- X轴：波长（380-2500 nm）
+- Y轴：反射率（0-1）
+- 绿色实线：DMTS-Net估计端元
+- 红色虚线：真实端元
+
+### 2. 丰度空间分布图
+
+展示4种端元在100×100像素空间中的丰度分布。
+
+![Abundance Maps](results/abundance_maps.png)
+
+**文件**: `results/abundance_maps.png`
+
+- 使用jet色彩映射
+- 色条范围：0（无）到1（完全覆盖）
+- 清晰显示不同地物的空间分布特征
+
+### 3. 丰度真实值与估计值对比图
+
+并排对比每种端元的真实丰度（左）与估计丰度（右）。
+
+![Abundance Comparison](results/abundance_comparison.png)
+
+**文件**: `results/abundance_comparison.png`
+
+- 8个子图：每种端元2张（真实 vs 估计）
+- 直观展示估计精度和空间分布一致性
+
+### 结果文件清单
+
+```
+results/
+├── endmembers_comparison.png    # 端元光谱对比（必有）
+├── abundance_maps.png           # 丰度分布图（必有）
+├── abundance_comparison.png     # 丰度对比图（必有）
+├── endmember_matching.png       # 端元匹配图（可选）
+├── best_model.pth              # 最佳完整模型
+├── best_ee_network.pth         # 最佳EE网络
+├── training_log.csv            # 训练日志
+├── performance_metrics.txt     # 性能指标
+└── endmember_matching.txt      # 端元匹配报告（可选）
+```
+
 ## 命令行参数
 
 ```
